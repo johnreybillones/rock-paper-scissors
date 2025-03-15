@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=	, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		let humanScore = 0, computerScore = 0;
+
+		const getComputerChoice = () => {
+			const choices = ["rock", "paper", "scissors"]
+			return choices[Math.floor(Math.random()*3)]
+		}
+
+		const getHumanChoice = () => {
+			return prompt("Enter your choice: ").toLowerCase()
+		}
+
+		const playRound = (computerChoice, humanChoice) => {
+			if ((humanChoice === "rock"  && computerChoice === "scissors") || (humanChoice === "paper" && computerChoice === "rock") || (humanChoice === "scissors" && computerChoice === "paper")) {
+				console.log(`You Win! ${humanChoice} beats ${computerChoice}.`)
+				humanScore++
+			} else if (humanChoice === computerChoice) {
+				console.log(`It's a tie. Both of you picked ${humanChoice}`)
+			} else {
+				console.log(`You lose! ${computerChoice} beats ${humanChoice}`)
+				computerScore++
+			}
+			console.log(`Your Score: ${humanScore} \nComputerScore: ${computerScore}`)
+		}
+		while((humanScore || computerScore) !== 5) {
+			const computerChoice = getComputerChoice();
+			const humanChoice = getHumanChoice();
+			playRound(computerChoice, humanChoice);
+		}
+
+		if(humanScore === 5) {
+			console.log("You won the game!")
+		} else if(computerScore === 5) {
+			console.log("You lost. Try Again")
+		}
+	</script>
+</body>
+</html>
